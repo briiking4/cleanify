@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/cleanify/static/css/main.a39b946a.chunk.css",
-    "main.js": "/cleanify/static/js/main.de822124.chunk.js",
-    "main.js.map": "/cleanify/static/js/main.de822124.chunk.js.map",
+    "main.js": "/cleanify/static/js/main.37a6278b.chunk.js",
+    "main.js.map": "/cleanify/static/js/main.37a6278b.chunk.js.map",
     "runtime-main.js": "/cleanify/static/js/runtime-main.aa44e632.js",
     "runtime-main.js.map": "/cleanify/static/js/runtime-main.aa44e632.js.map",
     "static/js/2.869261a2.chunk.js": "/cleanify/static/js/2.869261a2.chunk.js",
     "static/js/2.869261a2.chunk.js.map": "/cleanify/static/js/2.869261a2.chunk.js.map",
     "index.html": "/cleanify/index.html",
-    "precache-manifest.7fd52b6605a519ee4104ec0efda16510.js": "/cleanify/precache-manifest.7fd52b6605a519ee4104ec0efda16510.js",
+    "precache-manifest.20a8dd1616e125d948c37c65a15838d2.js": "/cleanify/precache-manifest.20a8dd1616e125d948c37c65a15838d2.js",
     "service-worker.js": "/cleanify/service-worker.js",
     "static/css/main.a39b946a.chunk.css.map": "/cleanify/static/css/main.a39b946a.chunk.css.map",
     "static/js/2.869261a2.chunk.js.LICENSE.txt": "/cleanify/static/js/2.869261a2.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.aa44e632.js",
     "static/js/2.869261a2.chunk.js",
     "static/css/main.a39b946a.chunk.css",
-    "static/js/main.de822124.chunk.js"
+    "static/js/main.37a6278b.chunk.js"
   ]
 }
