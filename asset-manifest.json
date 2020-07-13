@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.88505408.chunk.css",
-    "main.js": "/static/js/main.2d5538e1.chunk.js",
-    "main.js.map": "/static/js/main.2d5538e1.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
-    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
-    "static/js/2.ec22997d.chunk.js": "/static/js/2.ec22997d.chunk.js",
-    "static/js/2.ec22997d.chunk.js.map": "/static/js/2.ec22997d.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.1bb5e109c426590d800cdbb796cdf06c.js": "/precache-manifest.1bb5e109c426590d800cdbb796cdf06c.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.88505408.chunk.css.map": "/static/css/main.88505408.chunk.css.map",
-    "static/js/2.ec22997d.chunk.js.LICENSE.txt": "/static/js/2.ec22997d.chunk.js.LICENSE.txt",
-    "static/media/logo.png": "/static/media/logo.69e3c264.png",
-    "static/media/profPic.png": "/static/media/profPic.cc02a310.png"
+    "main.css": "/cleanify/static/css/main.88505408.chunk.css",
+    "main.js": "/cleanify/static/js/main.ad1ac16b.chunk.js",
+    "main.js.map": "/cleanify/static/js/main.ad1ac16b.chunk.js.map",
+    "runtime-main.js": "/cleanify/static/js/runtime-main.aa44e632.js",
+    "runtime-main.js.map": "/cleanify/static/js/runtime-main.aa44e632.js.map",
+    "static/js/2.ec22997d.chunk.js": "/cleanify/static/js/2.ec22997d.chunk.js",
+    "static/js/2.ec22997d.chunk.js.map": "/cleanify/static/js/2.ec22997d.chunk.js.map",
+    "index.html": "/cleanify/index.html",
+    "precache-manifest.bb85dbc8edd62ca181cf5c8ff6f6ad5d.js": "/cleanify/precache-manifest.bb85dbc8edd62ca181cf5c8ff6f6ad5d.js",
+    "service-worker.js": "/cleanify/service-worker.js",
+    "static/css/main.88505408.chunk.css.map": "/cleanify/static/css/main.88505408.chunk.css.map",
+    "static/js/2.ec22997d.chunk.js.LICENSE.txt": "/cleanify/static/js/2.ec22997d.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/cleanify/static/media/logo.69e3c264.png",
+    "static/media/profPic.png": "/cleanify/static/media/profPic.cc02a310.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.09b85ec0.js",
+    "static/js/runtime-main.aa44e632.js",
     "static/js/2.ec22997d.chunk.js",
     "static/css/main.88505408.chunk.css",
-    "static/js/main.2d5538e1.chunk.js"
+    "static/js/main.ad1ac16b.chunk.js"
   ]
 }
