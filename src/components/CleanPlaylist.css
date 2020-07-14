@@ -1,0 +1,30 @@
+.btn{
+  border-radius: 40px;
+  font-weight: bold;
+}
+.btn-add{
+  margin: 5px;
+  width: 75px;
+  background-color: #565656;
+  color: white;
+}
+
+hr.divider {
+  max-width: 3.25rem;
+  border-width: 0.2rem;
+  border-color: green;
+}
+
+hr.col-divider{
+  border-color: #2f2f2f;
+  margin: 4px;
+}
+
+.fa-arrow-right{
+  margin-top: 145px;
+}
+@media only screen and (max-width: 375px) {
+    #fadeshow {
+        display: none;
+    }
+}

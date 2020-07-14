@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+  color:white;
+}
+
+.btn{
+  margin: 2rem;
+}
+
+.profile{
+  padding-bottom: 2.5rem;
+  margin:auto;
+
+}
+.profPic{
+  width:85%;
+}
+
+.profName{
+  margin-top: 1.5rem;
+  font-weight: bold;
+  font-size:4vw;
+}
+.logo{
+  max-width:65%;
+}
