@@ -88,7 +88,7 @@ class Playlists extends React.Component{
         <div>
           <div className="row">
           <div className="col">
-            <button type="button" className="btn btn-success float-left mt-n1" onClick={this.backButton.bind(this)}><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Clean Another</button>
+            <button type="button" className="btn btn-success float-left mt-n1" onClick={this.backButton.bind(this)}><i className ="fa fa-arrow-circle-left" aria-hidden="true"></i> Clean Another</button>
           </div>
           </div>
           <div className="row">

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import profPic from './profPic.png';
 import logo from './logo.png'
 import Zoom from 'react-reveal/Zoom';
-import Bounce from 'react-reveal/Bounce';
+import Fade from 'react-reveal/Fade';
 
 import './App.css';
 import Playlists from './components/Playlists'
@@ -132,17 +132,17 @@ constructor (){
             </div>
           :
           <div id="login" className="pt-5">
-          <Zoom>
+          <Fade top>
           <div>
               <img src={logo} class="logo img-fluid text-center" alt="logo"/>
               <h1 className="logo-title">Cleanify</h1>
           </div>
-          </Zoom>
-          <Bounce left delay={1000}>
+          </Fade>
+          <Zoom delay={1000}>
             <div>
-            <button id="login-button" onClick={this.login} class="btn btn-success btn-lg">Log in with Spotify</button>
+            <a id="login-button" href="http://localhost:8888" class="btn btn-success btn-lg">Log in with Spotify</a>
             </div>
-          </Bounce>
+          </Zoom>
           </div>
 
         }

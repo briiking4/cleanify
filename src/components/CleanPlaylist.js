@@ -174,19 +174,22 @@ class CleanPlaylist extends React.Component{
     }
 
      async addTrack(track){
-       this.unaddCounter ++
+       // this.unaddCounter ++
        var elem = document.getElementById(track.id);
+       var counter = parseInt(elem.getAttribute("clicks"))
        var uri = track.uri
-       if (this.unaddCounter % 2 === 0){
+       counter ++
+       if (counter % 2 === 0){
          let addResult = await spotifyApi.addTracksToPlaylist(this.state.userId, this.state.newPlaylistId, [uri])
          elem.style.backgroundColor = "green";
-         elem.value = "DONE";
+         elem.innerHTML = "DONE";
        }else{
          let addResult = await spotifyApi.removeTracksFromPlaylist(this.state.userId, this.state.newPlaylistId, [uri])
          elem.style.backgroundColor = "#565656";
-         elem.value = "ADD";
+         elem.innerHTML = "ADD";
 
        }
+       elem.setAttribute("clicks", counter);
     }
 
 
@@ -207,7 +210,7 @@ class CleanPlaylist extends React.Component{
         <div key= {item.id}>
         <div className="row my-2">
           <div className="col-3 col-lg-1 mt-3">
-            <input type="button" className="btn btn-add" id={item.id} value="ADD" onClick={() => this.addTrack(item)}></input>
+            <button type="button" className="btn btn-add" id={item.id} clicks = "1" onClick={() => this.addTrack(item)}>ADD</button>
           </div>
           <div className="col-9 col-lg-11">
             <iframe src= {"https://open.spotify.com/embed/track/" + item.id } width="90%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media" title="embeded-track"></iframe>
