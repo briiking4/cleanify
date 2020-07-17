@@ -102,7 +102,15 @@ class Playlists extends React.Component{
             <p className=" text-muted sub-sub-header"> Can't find it? Make sure you either own or follow the playlist. If so, open Spotify and move it to the top of your list!</p>
             <hr className="divider mb-5"/>
               <div className="row">
-                {showPlaylist}
+              {this.state.playlistList.length === 0 ?
+                <div class="text-center col-12">
+                  <h3>Oh no! You do not have any existing playlists to clean.</h3>
+                  <h4> Open Spotify to create a new playlist and revisit Cleanfiy.</h4>
+                  <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="btn btn-success">Open Spotify</a>
+                </div>
+                :
+                showPlaylist
+              }
               </div>
           </div>
       }

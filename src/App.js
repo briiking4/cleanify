@@ -35,6 +35,7 @@ constructor (){
   }
 
   this.login = this.login.bind(this)
+  this.logout = this.logout.bind(this)
 }
 
 
@@ -107,6 +108,13 @@ constructor (){
     window.location = url;
   };
 
+  logout(){
+    this.setState({
+      loggedIn:false
+    })
+    return <iframe style="display: none;" src="https://spotify.com/logout"></iframe>
+  }
+
 
 
   render(){
@@ -125,6 +133,7 @@ constructor (){
                   <img src= {this.state.profPic} className="profPic rounded-circle img-fluid" alt="profile pic"/>
                 </div>
                 <div className="col-8 col-sm-8 col-lg-10 col-md-9 text-left ml-n3">
+                  <button type="button" class="btn btn-danger btn-sm mx-0 float-right" onClick={this.logout}>Log Out</button>
                   <h1 className="profName" >{this.state.name}</h1>
                 </div>
               </div>
@@ -140,7 +149,7 @@ constructor (){
           </Fade>
           <Zoom delay={1000}>
             <div>
-            <button id="login-button" onClick={this.login} class="btn btn-success btn-lg">Log in with Spotify</button>
+            <button id="login-button" onClick= {this.login} class="btn btn-success btn-lg">Log in with Spotify</button>
             </div>
           </Zoom>
           </div>
