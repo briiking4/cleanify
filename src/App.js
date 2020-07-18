@@ -150,7 +150,7 @@ constructor (){
           </Fade>
           <Zoom delay={1000}>
             <div>
-            <a id="login-button" href= "http://localhost:8888/" class="btn btn-success btn-lg">Log in with Spotify</a>
+            <button id="login-button" onClick= {this.login} class="btn btn-success btn-lg">Log in with Spotify</button>
             </div>
           </Zoom>
           </div>
