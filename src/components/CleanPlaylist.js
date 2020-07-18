@@ -41,7 +41,6 @@ class CleanPlaylist extends React.Component{
     var cleanTracksList = []
     spotifyApi.getPlaylistTracks(owner, id)
       .then((response) => {
-
         response.items.map((item) =>{
           if(item.track.explicit === true){
             explicitTracksList.push(item.track)
@@ -69,7 +68,7 @@ class CleanPlaylist extends React.Component{
       var cleanTrack;
       var itemC;
       var counter = 0;
-        let searchResult = await spotifyApi.search('track:'+ '"' +name+ '"' + ' artist:'+ '"'+ artist + '"' ,['track'])
+        let searchResult = await spotifyApi.search('track: ' +name+ ' artist: '+ '"'+ artist + '"' ,['track'])
         for (itemC of searchResult.tracks.items){
           if (itemC.explicit === false){
             if((itemC.name === name || itemC.name.includes("Clean")) && (itemC.artists[0].name === artist && counter <= 0) ){
