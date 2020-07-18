@@ -14,6 +14,7 @@ class Playlists extends React.Component{
       playlistSelected: false,
       currentSelected: '',
       playlistName: '',
+      noPlaylists: false
     };
   }
 
@@ -22,17 +23,22 @@ class Playlists extends React.Component{
 
       spotifyApi.getUserPlaylists({limit:50})
          .then((response, onRejected) => {
-             response.items.map((item) => {
-               if (item.images.length === 0){
-                 item.images.push({url: "https://i.ya-webdesign.com/images/notes-grey-icons-png-2.png"})
-               }
-               playlistItems.push({ownerId: item.owner.id, id: item.id, name:item.name, image: item.images[0].url})
-               return playlistItems
+           if (response.items.length === 0){
+             this.setState({
+               noPlaylists: true
              })
-            this.setState({
-              playlistList: playlistItems
-            })
-         });
+           }
+           response.items.map((item) => {
+             if (item.images.length === 0){
+               item.images.push({url: "https://i.ya-webdesign.com/images/notes-grey-icons-png-2.png"})
+             }
+             playlistItems.push({ownerId: item.owner.id, id: item.id, name:item.name, image: item.images[0].url})
+             return playlistItems
+           })
+          this.setState({
+            playlistList: playlistItems
+          })
+       });
 
    }
 
@@ -102,7 +108,7 @@ class Playlists extends React.Component{
             <p className=" text-muted sub-sub-header"> Can't find it? Make sure you either own or follow the playlist. If so, open Spotify and move it to the top of your list!</p>
             <hr className="divider mb-5"/>
               <div className="row">
-              {this.state.playlistList.length === 0 ?
+              {this.state.noPlaylists ?
                 <div class="text-center col-12">
                   <h3>Oh no! You do not have any existing playlists to clean.</h3>
                   <h4> Open Spotify to create a new playlist and revisit Cleanfiy.</h4>

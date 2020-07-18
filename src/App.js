@@ -113,7 +113,6 @@ constructor (){
       loggedIn:false
     })
     window.location.href = ""
-    return <iframe style="display: none;" src="https://spotify.com/logout"></iframe>
   }
 
 
@@ -134,7 +133,7 @@ constructor (){
                   <img src= {this.state.profPic} className="profPic rounded-circle img-fluid" alt="profile pic"/>
                 </div>
                 <div className="col-8 col-sm-8 col-lg-10 col-md-9 text-left ml-n3">
-                  <button type="button" class="btn btn-danger btn-sm mx-0 float-right" onClick={this.logout}>Log Out</button>
+                  <button type="button" class="btn btn-danger btn-sm mx-0 logout float-right" onClick={this.logout}>Log Out</button>
                   <h1 className="profName" >{this.state.name}</h1>
                 </div>
               </div>
@@ -145,12 +144,12 @@ constructor (){
           <Fade top>
           <div>
               <img src={logo} class="logo img-fluid text-center" alt="logo"/>
-              <h1 className="logo-title">Cleanify</h1>
+              <h1 className="logo-title font-weight-bold">Cleanify</h1>
           </div>
           </Fade>
           <Zoom delay={1000}>
             <div>
-            <button id="login-button" onClick= {this.login} class="btn btn-success btn-lg">Log in with Spotify</button>
+            <button id="login-button" onClick={this.login} class="btn btn-success">Log in with Spotify</button>
             </div>
           </Zoom>
           </div>
