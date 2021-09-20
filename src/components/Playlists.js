@@ -111,7 +111,7 @@ class Playlists extends React.Component{
               {this.state.noPlaylists ?
                 <div class="text-center col-12">
                   <h3>Oh no! You do not have any existing playlists to clean.</h3>
-                  <h4> Open Spotify to create a new playlist and revisit Cleanfiy.</h4>
+                  <h4> Open Spotify to create a new playlist and revisit Cleanify.</h4>
                   <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="btn btn-success">Open Spotify</a>
                 </div>
                 :
