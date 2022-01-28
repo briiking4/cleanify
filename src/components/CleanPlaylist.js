@@ -90,19 +90,23 @@ class CleanPlaylist extends React.Component{
         loadingData: true
       })
 
+      var findCleanTrackPromises = [];
       var itemE;
       for (itemE of this.explicitTracks) {
-        let cleanTrack = await this.findCleanTrack(itemE)
+        findCleanTrackPromises.push(this.findCleanTrack(itemE));
+      }
+
+      var cleanTrackResults = await Promise.all(findCleanTrackPromises);
+      for (var cleanTrack of cleanTrackResults) {
         if (cleanTrack === null){
-          this.noCleanVersions.push(itemE)
+          this.noCleanVersions.push(itemE);
         }else{
-          this.cleanTracks.push(cleanTrack)
+          this.cleanTracks.push(cleanTrack);
         }
       }
 
       if (this.noCleanVersions.length > 0){
         this.recTracks = await this.getRecommended(this.noCleanVersions)
-
       }
 
        var trackUri = [];
@@ -140,21 +144,25 @@ class CleanPlaylist extends React.Component{
       let recommededResult = await spotifyApi.getRecommendations({limit: 20, seed_tracks: trackId})
       var itemR;
 
-        for (itemR of recommededResult.tracks) {
-          if (itemR.explicit === true){
-            let cleanTrack = await this.findCleanTrack(itemR)
-            if (cleanTrack !== null){
-              recTracks.push(cleanTrack)
-            }
-
-          }else{
-            recTracks.push(itemR)
-          }
+      var cleanTrackPromises = [];
+      for (itemR of recommededResult.tracks) {
+        if (itemR.explicit === true){
+          cleanTrackPromises.push(this.findCleanTrack(itemR));
+        }else{
+          cleanTrackPromises.push(Promise.resolve(itemR));
         }
+      }
 
-        if (recTracks.length > 10){
-          recTracks = recTracks.slice(0,10)
+      var cleanTrackResults = await Promise.all(cleanTrackPromises);
+      for (var cleanTrack of cleanTrackResults) {
+        if (cleanTrack !== null){
+          recTracks.push(cleanTrack);
         }
+      }
+
+      if (recTracks.length > 10){
+        recTracks = recTracks.slice(0,10)
+      }
 
       return recTracks
     }
