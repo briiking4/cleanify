@@ -62,7 +62,7 @@ constructor (){
         }else{
           this.setState ({
             userId: response.id,
-            profPic: response.images[0].url,
+            profPic: response.images[1].url,
             name: response.display_name
           })
         }
@@ -91,7 +91,7 @@ constructor (){
     var stateKey = 'spotify_auth_state';
 
     var client_id = '69862027b9b54d9eb6f6dd2ae3ed3050'; // Your client id
-    var redirect_uri = 'https://cleanifyapp.com/'; // Your redirect uri
+    var redirect_uri = 'https://briiking4.github.io/cleanify/'; // Your redirect uri
 
     var state = this.generateRandomString(16);
 
@@ -129,10 +129,10 @@ constructor (){
           this.state.loggedIn ?
            <div>
               <div className="row profile">
-                <div className="col-4 col-sm-4 col-lg-2 col-md-3">
+                <div className="col-4 col-sm-4 col-lg-1 col-md-3">
                   <img src= {this.state.profPic} className="profPic rounded-circle img-fluid" alt="profile pic"/>
                 </div>
-                <div className="col-8 col-sm-8 col-lg-10 col-md-9 text-left ml-n3">
+                <div className="col-8 col-sm-8 col-lg-11 col-md-9 text-left ml-n3">
                   <button type="button" className="btn btn-danger btn-sm mx-0 logout float-right" onClick={this.logout}>Log Out</button>
                   <h1 className="profName" >{this.state.name}</h1>
                 </div>

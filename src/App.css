@@ -13,13 +13,13 @@
 
 }
 .profPic{
-  width:85%;
+  width:100%;
 }
 
 .profName{
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-weight: bold;
-  font-size:4vw;
+  font-size:2vw;
 }
 .logo{
   width:500px;

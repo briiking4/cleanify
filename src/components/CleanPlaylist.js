@@ -153,7 +153,7 @@ class CleanPlaylist extends React.Component{
         }
 
         if (recTracks.length > 10){
-          recTracks = recTracks.slice(0,10)
+          recTracks = recTracks.slice(0,7)
         }
 
       return recTracks
@@ -237,11 +237,11 @@ class CleanPlaylist extends React.Component{
         <div className="container">
           <div className="row">
             <div id="fadeshow" className="col">
-              <iframe src= {"https://open.spotify.com/embed/playlist/" + this.state.playlistId} width="100%" height="290" frameBorder="0" allowtransparency="true" allow="encrypted-media" title="embeded-playlist"></iframe>
+              <iframe src= {"https://open.spotify.com/embed/playlist/" + this.state.playlistId} width="100%" height="100%" frameBorder="0" allowtransparency="true" allow="encrypted-media" title="embeded-playlist"></iframe>
             </div>
             <i id="fadeshow" className="fas fa-arrow-right text-success fa-2x"></i>
             <div className="col">
-              <iframe src= {"https://open.spotify.com/embed/playlist/" + this.state.newPlaylistId} width="100%" height="290" frameBorder="0" allowtransparency="true" allow="encrypted-media" title="embeded-playlist"></iframe>
+              <iframe src= {"https://open.spotify.com/embed/playlist/" + this.state.newPlaylistId} width="100%" height="100%" frameBorder="0" allowtransparency="true" allow="encrypted-media" title="embeded-playlist"></iframe>
             </div>
           </div>
         </div>
@@ -259,7 +259,7 @@ class CleanPlaylist extends React.Component{
             {
               this.noCleanVersions.length > 0 &&
               <div>
-              <hr className="divider mt-5"/>
+              <hr className="divider"/>
               <h2>Recommended Clean Songs</h2>
               <p>Based on the songs we were unable to add: </p>
               <div className="container">
@@ -275,7 +275,7 @@ class CleanPlaylist extends React.Component{
         </div>
         :
           <div>
-            <button type="button" className="btn btn-lg btn-success mt-5" onClick= {this.makeCleanPlaylist} disabled={this.state.loadingData}>
+            <button type="button" className="btn btn-lg btn-success mt-3" onClick= {this.makeCleanPlaylist} disabled={this.state.loadingData}>
             { this.state.loadingData &&
               <i className="fa fa-compact-disc fa-spin text-white"></i>
             }
@@ -283,7 +283,7 @@ class CleanPlaylist extends React.Component{
             </button>
 
             <div>
-              <iframe src= {"https://open.spotify.com/embed/playlist/" + this.state.playlistId} width="80%" height="400" frameBorder="0" allowtransparency="true" allow="encrypted-media" title="embeded-playlist"></iframe>
+              <iframe src= {"https://open.spotify.com/embed/playlist/" + this.state.playlistId} width="60%" height="400" frameBorder="0" allowtransparency="true" allow="encrypted-media" title="embeded-playlist"></iframe>
             </div>
             <p className="text-muted"> Note: Spotify's explicit content tags are applied based on information Spotify receives from rights-holders. They can’t guarantee all explicit content is marked as such. Cleanify will clean your playlist based off of Spotify's marked explicit/clean songs.</p>
 

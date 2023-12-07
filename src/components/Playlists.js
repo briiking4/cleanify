@@ -30,7 +30,7 @@ class Playlists extends React.Component{
            }
            response.items.map((item) => {
              if (item.images.length === 0){
-               item.images.push({url: "https://i.ya-webdesign.com/images/notes-grey-icons-png-2.png"})
+               item.images.push({url: "https://static.vecteezy.com/system/resources/previews/011/934/413/original/silver-music-note-icon-free-png.png"})
              }
              playlistItems.push({ownerId: item.owner.id, id: item.id, name:item.name, image: item.images[0].url})
              return playlistItems
