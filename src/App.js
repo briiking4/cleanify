@@ -90,8 +90,8 @@ constructor (){
   login() {
     var stateKey = 'spotify_auth_state';
 
-    var client_id = '69862027b9b54d9eb6f6dd2ae3ed3050'; // Your client id
-    var redirect_uri = 'https://briiking4.github.io/cleanify/'; // Your redirect uri
+    var client_id = '69862027b9b54d9eb6f6dd2ae3ed3050'; 
+    var redirect_uri = 'https://briiking4.github.io/cleanify/'; 
 
     var state = this.generateRandomString(16);
 

@@ -23,14 +23,15 @@ class Playlists extends React.Component{
 
       spotifyApi.getUserPlaylists({limit:50})
          .then((response, onRejected) => {
-           if (response.items.length === 0){
+          console.log(response)
+           if (response.items.length === 0 || response.item === null){
              this.setState({
                noPlaylists: true
              })
            }
            response.items.map((item) => {
-             if (item.images.length === 0){
-               item.images.push({url: "https://static.vecteezy.com/system/resources/previews/011/934/413/original/silver-music-note-icon-free-png.png"})
+             if (item.images === null){
+               item.images = ([{url: "https://static.vecteezy.com/system/resources/previews/011/934/413/original/silver-music-note-icon-free-png.png"}])
              }
              playlistItems.push({ownerId: item.owner.id, id: item.id, name:item.name, image: item.images[0].url})
              return playlistItems
