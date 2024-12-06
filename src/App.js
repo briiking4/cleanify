@@ -147,7 +147,7 @@ getRefreshToken = async () => {
 
   login() {
     const stateKey = 'spotify_auth_state';
-    const redirect_uri = 'http://localhost:3000/'; // redirect URI
+    const redirect_uri = 'https://briiking4.github.io/cleanify/'; // redirect URI
 
     const state = this.generateRandomString(16);
 
