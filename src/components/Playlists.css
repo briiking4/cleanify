@@ -45,3 +45,16 @@ hr.divider {
 .embeded-list{
   width: 46%;
 }
+
+.search-input {
+  width: 50%; /* Adjust the width as needed */
+  margin: 0 auto; 
+  border-radius: 25px; 
+  padding: 20px; 
+  border: none; 
+  font-size: 16px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease; 
+  background-color: #1f1f1f;
+}
+

@@ -30,6 +30,8 @@ class CleanPlaylist extends React.Component{
     this.unableToAdd = this.unableToAdd.bind(this)
     this.addTrack = this.addTrack.bind(this)
 
+    this.cleanTrackCache = JSON.parse(localStorage.getItem('cleanTrackCache')) || {};
+
 
 
 
@@ -62,102 +64,133 @@ class CleanPlaylist extends React.Component{
       window.scrollTo(0, 0)
     }
 
-    async findCleanTrack(track){
-      var name = track.name
-      var artist = track.artists[0].name
-      var cleanTrack;
-      var itemC;
-      var counter = 0;
-        let searchResult = await spotifyApi.search('track: ' +name+ ' artist: '+ '"'+ artist + '"' ,['track'])
-        for (itemC of searchResult.tracks.items){
-          if (itemC.explicit === false){
-            if((itemC.name === name || itemC.name.includes("Clean")) && (itemC.artists[0].name === artist && counter <= 0) ){
-              cleanTrack = itemC
-              counter ++
-            }
-          }
+    async makeCleanPlaylist() {
+      console.log("CACHE STATE")
+      console.log(this.cleanTrackCache);
+
+      this.setState({ loadingData: true });
+      
+      const cleanTrackPromises = this.explicitTracks.map(track => this.findCleanTrack(track));
+      console.log(cleanTrackPromises)
+    
+      const cleanTracks = await Promise.all(cleanTrackPromises);
+    
+      cleanTracks.forEach((cleanTrack, index) => {
+        if (cleanTrack) {
+          this.cleanTracks.push(cleanTrack); // Add clean track if found
+        } else {
+          this.noCleanVersions.push(this.explicitTracks[index]); // Track not found, add to noCleanVersions
         }
-        if (counter === 0 ){
-          cleanTrack = null
-        }
-
-        return cleanTrack
-    }
-
-    async makeCleanPlaylist(){
-
+      });
+    
+      if (this.noCleanVersions.length > 0) {
+        this.recTracks = await this.getRecommended(this.noCleanVersions);
+      }
+    
+      const trackUris = this.cleanTracks.map(track => track.uri);
+    
+      const playlistResult = await spotifyApi.createPlaylist(this.state.userId, {
+        name: `${this.state.playlistName} (Clean)`
+      });
+    
+      this.openPlaylist = playlistResult.external_urls.spotify;
+      const newId = playlistResult.id;
+    
+      await spotifyApi.addTracksToPlaylist(this.state.userId, newId, trackUris);
+    
       this.setState({
-        loadingData: true
-      })
-
-      var itemE;
-      for (itemE of this.explicitTracks) {
-        let cleanTrack = await this.findCleanTrack(itemE)
-        if (cleanTrack === null){
-          this.noCleanVersions.push(itemE)
-        }else{
-          this.cleanTracks.push(cleanTrack)
-        }
-      }
-
-      if (this.noCleanVersions.length > 0){
-        this.recTracks = await this.getRecommended(this.noCleanVersions)
-
-      }
-
-       var trackUri = [];
-       var newId = '';
-       var x;
-       for (x of this.cleanTracks){
-         trackUri.push(x.uri)
-       }
-        let playlistResult = await spotifyApi.createPlaylist(this.state.userId, {name: this.state.playlistName + "(Clean)"})
-        this.openPlaylist = playlistResult.external_urls.spotify
-        newId = playlistResult.id
-
-        let addResult = await spotifyApi.addTracksToPlaylist(this.state.userId, newId, trackUri)
-
-        this.setState({
-          newPlaylistId: newId,
-          buttonPressed: true
-        })
-
+        newPlaylistId: newId,
+        buttonPressed: true,
+        loadingData: false
+      });
     }
+    
+    async findCleanTrack(track, isRecommended = false) {
 
-    async getRecommended(tracks){
-      var trackId = [];
-      var tracksList = tracks.slice();
-      var recTracks =[];
+      if (!track || !track.name || !track.artists || track.artists.length === 0) {
+        console.warn("Invalid track data:", track);
+        return null;
+      }
+    
+      const name = track.name.toLowerCase();
+      const artist = track.artists[0].name.toLowerCase();
+      const cacheKey = `${name}-${artist}`;
+      console.log("Generated cache key: ", cacheKey); 
+      console.log(this.cleanTrackCache[cacheKey]);
 
-      if (tracks.length > 5){
-        tracksList.splice(5,tracks.length)
+
+      if (this.cleanTrackCache[cacheKey]) {
+        console.log("Cache hit for: ", cacheKey);
+        return this.cleanTrackCache[cacheKey];
       }
 
-      tracksList.map((item) => {
-        trackId.push(item.id)
-      })
+    
+      try {
+        const searchResult = await spotifyApi.search(`track:${name} artist:${artist}`, ['track']);
+        const cleanTrack = searchResult.tracks.items.find(item => {
+          const itemName = item.name.toLowerCase();
 
-      let recommededResult = await spotifyApi.getRecommendations({limit: 20, seed_tracks: trackId})
-      var itemR;
+          const itemArtists = item.artists.map(a => a.name.toLowerCase());
+          const isClean = !item.explicit;
+          const isSameArtist = itemArtists.includes(artist);
+          
+          const isTitleClean = itemName.includes("clean") || itemName.includes("radio");
+    
+          return isClean && isSameArtist && (itemName === name || isTitleClean);
+        });    
 
-        for (itemR of recommededResult.tracks) {
-          if (itemR.explicit === true){
-            let cleanTrack = await this.findCleanTrack(itemR)
-            if (cleanTrack !== null){
-              recTracks.push(cleanTrack)
-            }
-
-          }else{
-            recTracks.push(itemR)
+        if (cleanTrack && !isRecommended) {
+          console.log("Found clean track, adding to cache:", cleanTrack);
+          this.cleanTrackCache[cacheKey] = cleanTrack;
+          localStorage.setItem('cleanTrackCache', JSON.stringify(this.cleanTrackCache));
+        }
+    
+  
+        return cleanTrack || null;
+      } catch (error) {
+        console.error("Error finding clean track:", error);
+        return null;
+      }
+    }
+    
+    
+    async getRecommended(tracks) {
+      const trackId = [];
+      const tracksList = tracks.slice();
+      const recTracks = [];
+    
+      // Limit the number of tracks to 5, if more than 5 tracks are provided
+      if (tracks.length > 5) {
+        tracksList.splice(5, tracks.length);
+      }
+    
+      // Collect track IDs
+      tracksList.forEach(item => trackId.push(item.id));
+    
+      // Get recommendations from Spotify
+      const recommendedResult = await spotifyApi.getRecommendations({
+        limit: 10, 
+        seed_tracks: trackId
+      });
+    
+      // Process each recommended track
+      for (const itemR of recommendedResult.tracks) {
+        if (itemR.explicit === true) {
+          const cleanTrack = await this.findCleanTrack(itemR,  true);
+          if (cleanTrack !== null) {
+            recTracks.push(cleanTrack);
           }
+        } else {
+          recTracks.push(itemR);
         }
-
-        if (recTracks.length > 10){
-          recTracks = recTracks.slice(0,7)
+    
+        if (recTracks.length >= 7) {
+          break;
         }
-
-      return recTracks
+      }
+          return recTracks;
     }
+    
 
    unableToAdd(){
      this.timesClicked ++
@@ -232,7 +265,7 @@ class CleanPlaylist extends React.Component{
         this.state.buttonPressed ?
         <div className= "mx-auto">
           <h3 className="font-weight-bold text-success"> Your Playlist Is Cleanified! </h3>
-          <p> You're done! We have already saved it to your library!</p>
+          <p> You're done! Your cleaned playlist is already saved to your library.</p>
             <a href= {this.openPlaylist} target="_blank" rel="noopener noreferrer" className="btn btn-success"> Open In Spotify </a>
         <div className="container">
           <div className="row">
