@@ -18,7 +18,6 @@ class App extends Component {
     super();
     const params = this.getHashParams();
     const token = params.access_token;
-    console.log(process.env.REACT_APP_SPOTIFY_CLIENT_ID)
 
     // Set token if it exists in the URL
     if (token) {
@@ -75,7 +74,6 @@ getRefreshToken = async () => {
   const url = 'https://accounts.spotify.com/api/token';
 
   // Log to check the stored refresh token
-  console.log('Refresh Token:', refreshToken);
 
   // Prepare the payload
   const payload = {
@@ -96,7 +94,6 @@ getRefreshToken = async () => {
     const response = await body.json();
 
     // Log the response to debug
-    console.log('Refresh Token Response:', response);
 
     // Check if the response contains the access token
     if (response.access_token) {

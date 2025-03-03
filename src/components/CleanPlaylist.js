@@ -65,13 +65,11 @@ class CleanPlaylist extends React.Component{
     }
 
     async makeCleanPlaylist() {
-      console.log("CACHE STATE")
-      console.log(this.cleanTrackCache);
+
 
       this.setState({ loadingData: true });
       
       const cleanTrackPromises = this.explicitTracks.map(track => this.findCleanTrack(track));
-      console.log(cleanTrackPromises)
     
       const cleanTracks = await Promise.all(cleanTrackPromises);
     
@@ -115,12 +113,10 @@ class CleanPlaylist extends React.Component{
       const name = track.name.toLowerCase();
       const artist = track.artists[0].name.toLowerCase();
       const cacheKey = `${name}-${artist}`;
-      console.log("Generated cache key: ", cacheKey); 
-      console.log(this.cleanTrackCache[cacheKey]);
+
 
 
       if (this.cleanTrackCache[cacheKey]) {
-        console.log("Cache hit for: ", cacheKey);
         return this.cleanTrackCache[cacheKey];
       }
 
@@ -140,7 +136,6 @@ class CleanPlaylist extends React.Component{
         });    
 
         if (cleanTrack && !isRecommended) {
-          console.log("Found clean track, adding to cache:", cleanTrack);
           this.cleanTrackCache[cacheKey] = cleanTrack;
           localStorage.setItem('cleanTrackCache', JSON.stringify(this.cleanTrackCache));
         }
