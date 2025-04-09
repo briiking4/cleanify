@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/cleanify/static/css/main.1669fd87.css",
-    "main.js": "/cleanify/static/js/main.f15eb514.js",
+    "main.css": "/cleanify/static/css/main.c83776c0.css",
+    "main.js": "/cleanify/static/js/main.09e6d0a9.js",
+    "static/media/display_1.svg": "/cleanify/static/media/display_1.89bcea24c4965d55bdaeab361484cf05.svg",
+    "static/media/display_2.svg": "/cleanify/static/media/display_2.8c08ce0898b05ba79715f1ee3284efbf.svg",
     "static/media/logo.png": "/cleanify/static/media/logo.e68fe98190353777be22.png",
     "static/media/profPic.png": "/cleanify/static/media/profPic.e2a373674d3bdc841a78.png",
+    "static/media/cloud.svg": "/cleanify/static/media/cloud.a8692b47e98fed67ddfbbbb6ff4357e3.svg",
     "index.html": "/cleanify/index.html",
-    "main.1669fd87.css.map": "/cleanify/static/css/main.1669fd87.css.map",
-    "main.f15eb514.js.map": "/cleanify/static/js/main.f15eb514.js.map"
+    "static/media/auxmod_logo.svg": "/cleanify/static/media/auxmod_logo.4fb44116b23c63fc52a06a3cf7aacd35.svg",
+    "main.c83776c0.css.map": "/cleanify/static/css/main.c83776c0.css.map",
+    "main.09e6d0a9.js.map": "/cleanify/static/js/main.09e6d0a9.js.map"
   },
   "entrypoints": [
-    "static/css/main.1669fd87.css",
-    "static/js/main.f15eb514.js"
+    "static/css/main.c83776c0.css",
+    "static/js/main.09e6d0a9.js"
   ]
 }
